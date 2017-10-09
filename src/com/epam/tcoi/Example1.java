@@ -1,6 +1,6 @@
 package com.epam.tcoi;
 
-public class FirstExample {
+public class Example1 {
     public static void main(String[] args) {
         double arrayLength = 0;
         for (String arg : args) arrayLength += arg.length();
