@@ -15,7 +15,10 @@ public class Example3 {
 
     private static void oopSolution1 (String[]names,int[]times){
         Record [] records = new Record [] {
-          new Record("Elena", 341)
+          new Record("Elena", 341),
+          new Record("Thomas", 273),
+          new Record("Hamilton", 278)
+                // others
         };
     }
 
@@ -42,10 +45,6 @@ public class Example3 {
         @Override
         public String toString() {
             return name +":"+time;
-        }
-
-        public Record() {
-            super();
         }
 
         public int compareTo(Record other) {
