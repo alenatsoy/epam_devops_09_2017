@@ -4,7 +4,7 @@ import com.sun.prism.impl.Disposer;
 
 import java.util.Arrays;
 
-public class Example3 {
+public class Task2 {
     public static void main(String[] args) {
         String[] names = {"Elena","Thomas","Hamilton","Suzie","Phil","Matt","Alex","Emma","John","James","Jane","Emily","Daniel","Neda","Aaron","Kate"};
         int[] times = {341,273,278,329,445,402,388,275,243,334,412,393,299,343,317,265 };

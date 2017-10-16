@@ -1,6 +1,6 @@
 package com.epam.tcoi;
 
-public class Semaphore {
+public class Task3 {
     // 0 - 3   Зеленый
     // 4 - 5   Желтый
     // 6 - 9   Красный

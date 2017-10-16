@@ -1,6 +1,6 @@
 package com.epam.tcoi;
 
-public class Example2 {
+public class Task1 {
     public static void main(String[] args) {
         if (args.length ==0) return;
         String min =args [0];
