@@ -75,7 +75,7 @@ public class IntList {
         if (list1.removeAll(8)) System.out.println(Arrays.toString(list1.toArray()));
 
         // поиск элемента в списке и возврат его позиции в списке (от головы к хвосту)
-        list1.add(5,6);
+        list1.add(5,7);
         System.out.println("Лист 8, после добавления дублирующего элемента 5 в середину списка");
         list1.printList();
         System.out.println("Поиск позиции первого вхождения 5");
@@ -116,7 +116,7 @@ public class IntList {
 
     public void add(int value, int index) {
         // добавление элемента в указанную позицию
-        if (index < listLength) {
+        if (index <= listLength) {
             if (listLength == arr.length){
                 int [] tmp = new int[arr.length*2];
                 System.arraycopy(arr, 0, tmp, 0, arr.length);
