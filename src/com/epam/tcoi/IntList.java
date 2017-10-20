@@ -4,8 +4,9 @@ import java.util.Arrays;
 
 public class IntList {
 
+    private static final int DEFAULT_SIZE = 16;
     private int[] arr;
-    static int listLength=0;
+    private static int listLength=0;
 
     public static void main(String[] args) {
         // создание объекта класса
@@ -89,7 +90,7 @@ public class IntList {
 
 
     public IntList() {
-        arr = new int[16];
+        arr = new int[DEFAULT_SIZE];
     }
 
     public IntList(int size) {
@@ -104,24 +105,23 @@ public class IntList {
     }
 
     public void add(int value) {
-        int temp = listLength;
-        if (temp == arr.length) {
+        extendIfNeeded();
+        arr[size()]=value;
+        listLength++;
+    }
+
+    public void extendIfNeeded (){
+        if (listLength == arr.length) {
             int [] tmp = new int[arr.length*2];
             System.arraycopy(arr, 0, tmp, 0, arr.length);
             arr = tmp;
         }
-        arr[size()]=value;
-        listLength++;
     }
 
     public void add(int value, int index) {
         // добавление элемента в указанную позицию
         if (index <= listLength) {
-            if (listLength == arr.length){
-                int [] tmp = new int[arr.length*2];
-                System.arraycopy(arr, 0, tmp, 0, arr.length);
-                arr = tmp;
-            }
+            extendIfNeeded();
             for (int i = listLength; i >=index; i--){
                 arr[i]=arr[i-1];
             }
