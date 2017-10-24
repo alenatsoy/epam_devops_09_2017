@@ -2,6 +2,10 @@ package com.epam.tcoi;
 
 import java.util.Arrays;
 
+//Реализовать список, позволяющий работать с целыми числами типа int, построенный на основе массива.
+//Заготовка класса списка располагается в: com.epam.practice.IntList
+//Необходимо скопировать её в личный пакет и реализовать все
+
 public class IntList {
 
     private static final int DEFAULT_SIZE = 16;
@@ -237,5 +241,26 @@ public class IntList {
         arr = tmp;
     }
 
+//    @Override
+//    public  boolean equals(Object obj) {
+//        if (obj == null) {
+//            return false;
+//        }
+//        IntList _this = this;
+//        Object objectThis = (Object)this;
+//        if (obj == objectThis) {
+//            return true;
+//        }
+//        if (obj.getClass() != IntList.class){
+//            return false;
+//        }
+//        if (!(obj instanceof IntList)) {
+//            return false;
+//        }
+//        IntList other = (IntList)obj;
+//        if (this.listLength != listLength) {
+//            return false;
+//        }
+//    }
 
 }
