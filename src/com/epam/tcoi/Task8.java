@@ -23,20 +23,20 @@ import java.util.Arrays;
 public class Task8 {
     public static void main(String[] args) {
         if (args.length == 0) return;
-        String palindrom = "No palindroms";
+        String palindrome = "No palindromes";
         StringBuffer stringPartLeft;
         StringBuffer stringPartRight;
         for (int i =0; i<args.length; i++) {
             if (args[i].matches("[-+]?\\d+")) {
-                if (args[i].length() == 1) palindrom = args[i];
+                if (args[i].length() == 1) palindrome = args[i];
                 else {
                     stringPartLeft = new StringBuffer(args[i].substring(0,args[i].length()/2));
                     stringPartRight = new StringBuffer(args[i].substring(args[i].length()-args[i].length()/2));
                     stringPartRight.reverse();
-                    if (stringPartLeft.toString().equals(stringPartRight.toString())) palindrom = args[i];
+                    if (stringPartLeft.toString().equals(stringPartRight.toString())) palindrome = args[i];
                 }
             }
         }
-        System.out.println(palindrom);
+        System.out.println(palindrome);
     }
 }
