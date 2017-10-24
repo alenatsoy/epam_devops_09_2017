@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class Task8 {
     public static void main(String[] args) {
         if (args.length == 0) return;
-        String palindrom = "xxx";
+        String palindrom = "No palindroms";
         StringBuffer stringPartLeft;
         StringBuffer stringPartRight;
         for (int i =0; i<args.length; i++) {
