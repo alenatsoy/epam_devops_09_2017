@@ -2,14 +2,16 @@ package com.epam.tcoi;
 
 import java.util.Arrays;
 
-public class IntList implements IntInterface {
+public class GenericArrayList<T> implements GenericList <T> {
     private static final int DEFAULT_SIZE = 16;
-    private int[] arr;
+    private Object[] arr;
     private static int listLength=0;
 
     public static void main(String[] args) {
         // создание объекта класса
-        IntList list1 = new IntList();
+        GenericList <Integer> list1 = new GenericArrayList<>();
+        GenericList <Object> list2 = new GenericArrayList<>();
+
         // добавление элементов в конец списка
         list1.add(1);
         list1.add(2);
@@ -17,6 +19,7 @@ public class IntList implements IntInterface {
         list1.add(4);
         list1.add(6);
         list1.add(7);
+
 
         // возврат копии массива
         // вывод массива
@@ -88,9 +91,9 @@ public class IntList implements IntInterface {
     }
 
 
-    public IntList() {this(DEFAULT_SIZE);}
+    public GenericArrayList() {this(DEFAULT_SIZE);}
 
-    public IntList(int size) {arr = new int[size];}
+    public GenericArrayList(int size) {arr = new Object[size];}
 
     public void printList(){
         // временная функция, если нужен трим до вывода элементов списка на экран,
@@ -100,7 +103,7 @@ public class IntList implements IntInterface {
     }
 
     @Override
-    public void add(int value) {
+    public void add(T value) {
         extendIfNeeded();
         arr[size()]=value;
         listLength++;
@@ -108,21 +111,21 @@ public class IntList implements IntInterface {
 
     public void extendIfNeeded (){
         if (listLength == arr.length) {
-            int [] tmp = new int[arr.length*2];
+            Object[] tmp = new Object[arr.length*2];
             System.arraycopy(arr, 0, tmp, 0, arr.length);
             arr = tmp;
         }
     }
 
     @Override
-    public void add(int value, int index) {
+    public void add(T value, int index) {
         // добавление элемента в указанную позицию
         if (index <= listLength) {
             extendIfNeeded();
             for (int i = listLength; i >=index; i--){
                 arr[i]=arr[i-1];
             }
-            arr[index-1]=value;
+            arr[index-1] = value;
             listLength++;
         }
         else {
@@ -131,7 +134,8 @@ public class IntList implements IntInterface {
         }
     }
 
-    public void set(int value, int index) {
+    @Override
+    public void set(T value, int index) {
         // изменяет значение указанного элемента
         if (index > listLength){
             System.out.println("Введенная позиция больше размера списка, элемент добавлен в конец списка");
@@ -140,21 +144,20 @@ public class IntList implements IntInterface {
         else arr[index-1] = value;
     }
 
-    public boolean remove(int value) {
+    @Override
+    public boolean remove(T value) {
         // удаление первого вхождения указанного элемента (если он присутствует в списке)
         // возвращает true - если элемент был удален, в противном случае false
-        boolean temp = false;
-        for (int i = 0; i < listLength; i++){
-            if (arr[i] == value){
-                removeFrom(i+1);
-                temp = true;
-                break;
-            }
+        int temp = this.indexOf(value);
+        if (temp > 0) {
+            this.removeFrom(temp);
+            return true;
         }
-        return temp;
+        else return false;
     }
 
-    public boolean removeAll(int value) {
+    @Override
+    public boolean removeAll(T value) {
         // удаление всех вхождений указанного элемента (если он присутствует в списке)
         // возвращает true - если элемент был удален, в противном случае false
         boolean temp = false;
@@ -168,10 +171,11 @@ public class IntList implements IntInterface {
         return temp;
     }
 
-    public int removeFrom(int index) {
+    @Override
+    public T removeFrom(int index) {
         // удаление элемента по указанному индексу
         // возвращает удаленное значение
-        int temp = 0;
+        Object temp = arr[index - 1];
         if (index > size()) System.out.println("Введенная позиция больше размера списка, элемент не найден");
         else {
             temp = arr[index - 1];
@@ -181,45 +185,45 @@ public class IntList implements IntInterface {
             arr[size()-1]=0;
         }
         listLength--;
-        return temp;
+        return (T) temp;
     }
 
-    public int get(int index) {
+    @Override
+    public T get(int index) {
         // значение указанного элемента
-        return arr[index-1];
+        return (T) arr[index-1];
     }
 
-    public int[] toArray() {
+    @Override
+    public T[] toArray() {
         // возвращаем копию внутреннего массива
-        return Arrays.copyOf(arr, arr.length);
+        return Arrays.copyOf((T[]) arr, arr.length);
     }
 
+    @Override
     public int size() {
         // текущий размер списка
-//        int nextPosition=0;
-//        for (int i = 0; i < arr.length ; i++){
-//            if (arr[i] > 0) nextPosition = i+1;
-//        }
         return listLength;
     }
 
-    public int indexOf(int value) {
+    @Override
+    public int indexOf(T value) {
         // поиск элемента (с головы списка к хвосту)
         int temp = 0;
         for (int i = 0; i < listLength; i++){
-            if (arr[i] == value) {
+            if (arr[i].equals(value)) {
                 temp = i+1;
                 break;
             }
         }
         return temp;
     }
-
-    public int lastIndexOf(int value) {
+    @Override
+    public int lastIndexOf(T value) {
         // поиск элемента (c хвоста списка к голове)
         int temp = 0;
         for (int i = listLength-1; i >= 0; i--){
-            if (arr[i] == value) {
+            if (arr[i].equals(value)) {
                 temp = i+1;
                 break;
             }
@@ -229,7 +233,7 @@ public class IntList implements IntInterface {
 
     public void trimToSize() {
         // уменьшает размер внутреннего массива до актуального значения
-        int [] tmp = new int[listLength];
+        Object [] tmp = new Object[listLength];
         System.arraycopy(arr, 0, tmp, 0, listLength);
         arr = tmp;
     }
